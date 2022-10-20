@@ -15,18 +15,41 @@ def check_index(index):
     max_value = 2
     return min_value <= index <= max_value
 
-
+def check_win(state):
+    if (state[0][0]==state[0][1]==state[0][2]) and state[0][0]!=None:
+        print('выйграл ',state[0][0])
+        return True
+    if (state[1][0]==state[1][1]==state[1][2]) and state[1][0]!=None:
+        print('выйграл ',state[1][0])
+        return True
+    if (state[2][0]==state[2][1]==state[2][2]) and state[2][0]!=None:
+        print('выйграл ',state[2][0])
+        return True
+    if (state[0][0]==state[1][0]==state[2][0]) and state[0][0]!=None:
+        print('выйграл ',state[0][0])
+        return True
+    if (state[0][1]==state[1][1]==state[2][1]) and state[0][1]!=None:
+        print('выйграл ',state[0][1])
+        return True
+    if (state[0][2]==state[1][2]==state[2][2]) and state[0][2]!=None:
+        print('выйграл ',state[0][2])
+        return True
+    if (state[0][0]==state[1][1]==state[2][2]) and state[0][0]!=None:
+        print('выйграл ',state[0][0])
+        return True
+    if (state[0][2]==state[1][1]==state[2][0]) and state[0][2]!=None:
+        print('выйграл ',state[0][2])
+        return True
+    else:
+        return False
 def start():
     steps = 9
-
-    while steps != 0:
+    while steps != -1:
         current_sign = SIGN_O if steps % 2 == 0 else SIGN_X
-
         print(f'Ходит {current_sign}')
 
-        row_index = prompt.integer('Введите строку от 1 до 3: ') - 1
-        col_index = prompt.integer('Введите столбец от 1 до 3: ') - 1
-
+        row_index = prompt.integer('Введите строку от 1 до 3: ') - 1            
+        col_index = prompt.integer('Введите столбец от 1 до 3: ') - 1       
         if check_index(row_index) and check_index(col_index):
 
             if state[row_index][col_index] is not None:
@@ -42,3 +65,10 @@ def start():
 
         else:
             print('Неправильное значение столбца или строки')
+        if steps == 0:
+            print('Ничья')
+            return
+
+        if check_win(state) == True:
+            return
+

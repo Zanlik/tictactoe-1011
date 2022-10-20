@@ -1,5 +1,4 @@
-from tictactoe.game import start
-
+from game import start
 
 def main():
     start()
